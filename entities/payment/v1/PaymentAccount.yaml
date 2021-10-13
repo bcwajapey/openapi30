@@ -1,0 +1,66 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    PaymentAccount:
+      title: PaymentAccount
+      type: object
+      description: The account assigned for the payment.
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        balances:
+          type: array
+          items:
+            $ref: ../../common/v1/Balance.yaml#/components/schemas/Balance
+        primaryCurrency:
+          type: string
+          description: |-
+            Account level primary currency
+            Oringinal 3 char Currency code https://www.iso.org/iso-4217-currency-codes.html 
+        description:
+          type: string
+          description: Description of Payment account
+        nickName:
+          type: string
+          description: The nickname of the account
+        ownershipName:
+          type: string
+          description: The owner of the account
+        typeOfOwnership:
+          type: string
+          example: 'consumer, joint, business, corporate'
+          description: |
+            The type of ownership like consumer, joint, business or corporate
+        linkedAccounts:
+          type: array
+          description: The accounts associated with this account
+          items:
+            $ref: ./LinkedAccount.yaml#/components/schemas/LinkedAccount
+        links:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        accountNumber:
+          type: string
+          description: The account number of the payment account
+        customer:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+        status:
+          type: string
+          enum:
+            - active
+            - delinquent
+            - pending
+            - rejected
+            - underreview
+            - other
+            - fraud
+          description: 'The status of the payment account i.e. delinquent,active,pending'
+        metaData:
+          $ref: ../../../entities/common/v1/MetaData.yaml#/components/schemas/MetaData

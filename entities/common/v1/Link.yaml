@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Link:
+      title: Link
+      type: object
+      description: 'Link object provided to include internal and external links to resoruces and entities. '
+      properties:
+        href:
+          type: string
+          description: The link should be Complete URL that can be used as is to get more details. For link type "path"
+        relationship:
+          type: string
+          description: |-
+            Link Relationship self, internal, external
+
+            Self - Associated with entity itself
+            internal - within your internal namespace/system
+            external - public url
+          enum:
+            - self
+            - internal
+            - external
+        method:
+          type: string
+          enum:
+            - get
+            - put
+            - delete
+            - post
+          description: HTTP method
+        nameSpace:
+          type: string
+        externalId:
+          type: string
+          description: ID of the resource in the link
+        resourceName:
+          type: string
+          description: 'Name of the resource in the link. accounts, payment, order'
+        linkType:
+          type: string
+          enum:
+            - path
+            - operation
+          description: 'Type of link based on X Path URL or Operation based such as PUT, POST etc'

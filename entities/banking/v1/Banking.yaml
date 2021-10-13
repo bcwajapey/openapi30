@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Transaction:
+      title: Transaction
+      type: object
+      description: 'Transaction - Defined as a transaction record one of the types such as Payment, Transfer, Refund, Deposit, Investment, Insurance, Loan/LOC etc.'
+      examples: []
+      properties:
+        Transaction:
+          type: object
+          properties:
+            Id:
+              $ref: ../../common/v1/Common.yaml#/components/schemas/Id
+            data:
+              oneOf:
+                - properties:
+                    depositTransaction:
+                      $ref: '#/components/schemas/DepositTransaction'
+                    loanTransaction:
+                      $ref: '#/components/schemas/LoanTransaction'
+                    lineOfCreditTransaction:
+                      $ref: '#/components/schemas/LineOfCreditTransaction'
+              type: object
+    Deposit:
+      title: Banking
+      type: object
+      properties:
+        id:
+          type: string
+    Investment:
+      title: Investment
+      type: object
+      properties:
+        id:
+          type: string
+    Loan:
+      title: Loan
+      type: object
+      properties:
+        id:
+          type: string
+    Transactions:
+      title: Transactions
+      type: object
+      properties:
+        Trasnactions:
+          allOf:
+            - items:
+                $ref: '#/components/schemas/Transaction'
+          type: array
+        dateAcquired:
+          type: string
+          description: 'Date acquired by intuit service in ISO 8601 UTC format - "yyyy-MM-dd''T''HH:mm:ss''Z''" with timezone'
+        startDate:
+          type: string
+          description: Start date of transaction included in response
+        endDate:
+          type: string
+          description: End date of transaction included in response
+    LineOfCredit:
+      title: LineOfCredit
+      type: object
+      properties:
+        id:
+          type: string
+    Account:
+      title: Account
+      type: object
+      properties:
+        accountId:
+          type: string
+        balances:
+          $ref: ../../common/v1/Common.yaml#/components/schemas/Balance
+        primaryCurrency:
+          type: string
+          description: Account level primary currency
+        description:
+          type: string
+        nickName:
+          type: string
+        ownershipName:
+          type: string
+        typeOfOwnership:
+          type: string
+          example: 'consumer, joint, business, corporate'
+        account:
+          anyOf:
+            - properties:
+                depositAccount:
+                  $ref: '#/components/schemas/Deposit'
+                loanAccount:
+                  $ref: '#/components/schemas/Loan'
+                lineOfCredit:
+                  $ref: '#/components/schemas/LineOfCredit'
+          type: object
+    Accounts:
+      title: Accounts
+      type: array
+      items:
+        $ref: '#/components/schemas/Account'
+      description: Accounts details
+    DepositTransaction:
+      title: DepositTransaction
+      type: object
+      properties:
+        id:
+          type: string
+    LoanTransaction:
+      title: LoanTransaction
+      type: object
+      properties:
+        id:
+          type: string
+    LineOfCreditTransaction:
+      title: LineOfCreditTransaction
+      type: object
+      properties:
+        id:
+          type: string

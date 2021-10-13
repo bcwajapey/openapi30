@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    CategorizationData:
+      title: CategorizationData
+      type: object
+      description: Categorization data object.
+      properties:
+        industryCodes:
+          type: array
+          description: 'Array of industry code such as MCC, SIC etc'
+          items:
+            $ref: ./IndustryCode.yaml#/components/schemas/IndustryCode
+        merchantDetail:
+          $ref: ./Customer.yaml#/components/schemas/Customer
+        rules:
+          type: array
+          description: "\t\nBlock to describe that a rule has been applied. "
+          items:
+            $ref: ./CategorizationRule.yaml#/components/schemas/CategorizationRule
+        categorization:
+          $ref: ./Categorization.yaml#/components/schemas/Categorization
+        alternateCategorization:
+          type: array
+          description: Alternate Categorization
+          items:
+            $ref: ./Categorization.yaml#/components/schemas/Categorization

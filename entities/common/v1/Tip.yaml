@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Tip:
+      title: Tip
+      type: object
+      description: Tip Object
+      properties:
+        id:
+          $ref: ./Id.yaml#/components/schemas/Id
+        amount:
+          $ref: ./Money.yaml#/components/schemas/Money
+      required:
+        - id
+        - amount

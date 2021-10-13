@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Email:
+      title: email
+      type: object
+      description: Email Object
+      properties:
+        email:
+          type: string
+          description: email Id
+        verifiedType:
+          type: string
+          enum:
+            - email
+            - sms
+            - inapp
+            - other
+            - unverified
+          description: Verified Email with one of these methods
+        usage:
+          type: string
+          description: is email primary
+          enum:
+            - primary
+            - secondary
+            - other
+      required:
+        - email
+        - verifiedType
+        - usage

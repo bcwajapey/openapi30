@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Product:
+      title: Product
+      type: object
+      description: ''
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        productCode:
+          type: string
+          description: Code associated with product
+        productName:
+          type: string
+          description: Name of product
+        price:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        productDescription:
+          type: string
+          description: Description of product
+        links:
+          type: array
+          description: Links associated with product
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        brand:
+          type: string
+          description: Brand of the product
+        supplier:
+          $ref: ./Supplier.yaml#/components/schemas/Supplier
+        variants:
+          type: array
+          description: Variants of the product
+          items:
+            $ref: ./Variant.yaml#/components/schemas/Variant
+        sku:
+          type: string
+          description: SKU of the product

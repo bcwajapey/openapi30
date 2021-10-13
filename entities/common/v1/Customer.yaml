@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Customer:
+      title: customer
+      type: object
+      description: Customer object
+      properties:
+        id:
+          $ref: ./Id.yaml#/components/schemas/Id
+        name:
+          $ref: ./Contact.yaml#/components/schemas/Contact
+        address:
+          type: array
+          description: Addresses details of customer
+          items:
+            $ref: ./Address.yaml#/components/schemas/Address
+        phone:
+          type: array
+          description: Phones details of customer
+          items:
+            $ref: ./Phone.yaml#/components/schemas/Phone
+        email:
+          type: array
+          description: Emails of customer
+          items:
+            $ref: ./Email.yaml#/components/schemas/Email
+      required:
+        - name

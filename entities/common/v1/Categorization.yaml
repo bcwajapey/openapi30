@@ -1,0 +1,46 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Categorization:
+      title: Categorization
+      type: object
+      description: Categorization data object.
+      properties:
+        id:
+          $ref: ./Id.yaml#/components/schemas/Id
+        category:
+          type: string
+          description: "The category description for the categorized transaction, set to the empty string if uncategorized.\t"
+        transactionDescription:
+          type: string
+          description: The cleansed transaction description
+        scheduleCId:
+          type: string
+        scheduleCCategory:
+          type: string
+        categorizationMethodId:
+          type: string
+          description: The categorization engine is a rules based engine and this is a flag to indicate which rule was used to categorize the transaction.
+        transactionId:
+          type: string
+        confidenceScore:
+          type: number
+          example: '0.1,0.2, 1'
+          minimum: 0
+          maximum: 1
+          description: Confidence Score is 0 to 1 ( 90% confidence score will be .9)
+        type:
+          type: string
+          enum:
+            - default
+            - other
+      required:
+        - id
+        - category
+        - transactionDescription

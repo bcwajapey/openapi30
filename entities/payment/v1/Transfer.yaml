@@ -1,0 +1,54 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Transfer:
+      title: transfer
+      type: object
+      description: Transfer between accounts held by the same user. The account could be same of Institution or different institution as linked account.
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        date:
+          $ref: ../../common/v1/DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+        sourceAccount:
+          $ref: ./LinkedAccount.yaml#/components/schemas/LinkedAccount
+        destinationAccount:
+          $ref: ./LinkedAccount.yaml#/components/schemas/LinkedAccount
+        amount:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        type:
+          type: string
+          description: |
+            Transfer or transaction type
+          enum:
+            - transfer
+            - payout
+            - other
+            - collection
+            - payoutreversal
+            - transferreversal
+            - transferfailure
+            - payoutfailure
+        description:
+          type: string
+          description: Describes the type of transfer
+        memo:
+          type: string
+          description: The short description of the transfer
+        debitCreditMemo:
+          type: string
+          enum:
+            - debit
+            - credit
+            - memo
+          description: 'The memo type like debit, credit'
+        links:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link

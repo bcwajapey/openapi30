@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Phone:
+      title: phone
+      type: object
+      properties:
+        countryCode:
+          type: string
+          description: |-
+            Country code - alpha-3 .
+            https://www.iso.org/iso-3166-country-codes.html
+        phoneNumer:
+          type: number
+        countryCallingCode:
+          type: number
+          description: 'https://www.nationsonline.org/oneworld/international-calling-codes.htm'
+        internationalDialingPrefix:
+          type: number
+          description: 'https://www.nationsonline.org/oneworld/international-calling-codes.htm'
+        nationalCode:
+          type: number
+          description: 'https://www.nationsonline.org/oneworld/international-calling-codes.htm'
+        verifiedType:
+          type: string
+          description: Verified phone via SMS or in product confirmation or other methods
+          enum:
+            - email
+            - sms
+            - inapp
+            - other
+        usage:
+          type: string
+          example: 'primary, secondary, other'
+          description: is this phone primary contact
+        phoneType:
+          type: string
+          enum:
+            - home
+            - mobile
+      required:
+        - verifiedType
+      description: Phone Object

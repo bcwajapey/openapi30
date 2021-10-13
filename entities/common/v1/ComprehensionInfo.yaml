@@ -1,0 +1,34 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    ComprehensionInfo:
+      title: ComprehensionInfo
+      type: object
+      properties:
+        extractedKey:
+          type: string
+        extractedValue:
+          type: string
+          description: Original extracted value without any post processing
+        userUpdatedValue:
+          type: string
+        confidenceScore:
+          type: number
+          example: '0.1,0.2, 1'
+          minimum: 0
+          maximum: 1
+          description: Confidence Score is 0 to 1 ( 90% confidence score will be .9)
+        geometry:
+          type: object
+          $ref: ./Geometry.yaml#/components/schemas/Geometry
+        error:
+          type: array
+          items:
+            $ref: ./Error.yaml#/components/schemas/Error
+      description: Processor information for entity processing

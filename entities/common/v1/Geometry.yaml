@@ -1,0 +1,26 @@
+openapi: 3.0.0
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths: {}
+components:
+  schemas:
+    Geometry:
+      title: Geometry
+      type: object
+      properties:
+        page:
+          type: integer
+        left:
+          type: number
+        top:
+          type: number
+        width:
+          type: number
+        height:
+          type: number
+
+  

@@ -1,0 +1,96 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    PaymentTransaction:
+      title: Payment Transactions
+      type: object
+      description: Payment Transactions
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        type:
+          type: string
+          description: 'Normalized transaction type  '
+          enum:
+            - adjustment
+            - fee
+            - payment
+            - other
+            - releaseadjustment
+            - holdadjustment
+            - reserve
+            - advance
+        externalTransactionType:
+          type: string
+          description: This is provider transactions type.
+        status:
+          type: string
+          enum:
+            - pending
+            - posted
+        accountId:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        amount:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        fees:
+          type: array
+          items:
+            $ref: ../../common/v1/Fee.yaml#/components/schemas/Fee
+        discounts:
+          type: array
+          items:
+            $ref: ../../eCommerce/v1/Discount.yaml#/components/schemas/Discount
+        taxes:
+          type: array
+          items:
+            $ref: ../../common/v1/Tax.yaml#/components/schemas/Tax
+        description:
+          type: string
+          description: Describes the payment
+        memo:
+          type: string
+          description: A payment memo
+        date:
+          $ref: ../../common/v1/DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+        links:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        debitCreditMemo:
+          type: string
+          enum:
+            - debit
+            - credit
+            - memo
+        payer:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+        payee:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+        categorizationData:
+          $ref: ../../common/v1/CategorizationData.yaml#/components/schemas/CategorizationData
+        adjustment:
+          $ref: ./Adjustment.yaml#/components/schemas/Adjustment
+        runningBalance:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        orders:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        invoices:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        lineItems:
+          type: array
+          items:
+            $ref: ../../common/v1/LineItem.yaml#/components/schemas/LineItem
+        tipAmount:
+          $ref: ../../common/v1/Tip.yaml#/components/schemas/Tip
+        metaData:
+          $ref: ../../../entities/common/v1/MetaData.yaml#/components/schemas/MetaData

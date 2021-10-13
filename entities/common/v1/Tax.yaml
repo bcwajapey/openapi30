@@ -1,0 +1,21 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Tax:
+      title: Tax
+      type: object
+      description: Tax object
+      properties:
+        code:
+          type: string
+          description: 'Sales tax, Duty, GST etc'
+        name:
+          type: string
+        amount:
+          $ref: ./Money.yaml#/components/schemas/Money

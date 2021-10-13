@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    MetaData:
+      title: MetaData
+      type: object
+      properties:
+        connectionId:
+          type: string
+          description: aka Credential set id.(If not newly created)
+        startDate:
+          type: string
+          description: Start Date of date range
+        endDate:
+          type: string
+          description: End Date of date range
+        providerId:
+          type: string
+          description: |-
+            Identification of partner or institution in Intuit.
+             
+        dateAcquired:
+          $ref: ./DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+        pipelineMetaData:
+          $ref: ./PipeLineMetaData.yaml#/components/schemas/PipelineMetaData
+        comprehensionMetaData:
+          $ref: ./ComprehensionMetaData.yaml#/components/schemas/ComprehensionMetaData
+      required:
+        - providerId

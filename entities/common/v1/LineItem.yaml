@@ -1,0 +1,68 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    LineItem:
+      title: LineItem
+      type: object
+      description: Line Item details
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        index:
+          type: number
+          description: Sequence order of line item
+        quantity:
+          type: number
+          description: Quantity of order line item
+        unitPrice:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        discount:
+          type: array
+          description: Discounts for order line item
+          items:
+            $ref: ../../eCommerce/v1/Discount.yaml#/components/schemas/Discount
+        taxes:
+          type: array
+          description: Taxes for order line item
+          items:
+            $ref: ../../common/v1/Tax.yaml#/components/schemas/Tax
+        amount:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        product:
+          $ref: ../../eCommerce/v1/Product.yaml#/components/schemas/Product
+        fees:
+          type: array
+          description: Fees for order line item
+          items:
+            $ref: ../../common/v1/Fee.yaml#/components/schemas/Fee
+        discountTotal:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        taxTotal:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        feeTotal:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        unitMeasurement:
+          type: string
+          enum:
+            - quantity
+            - hours
+            - amount
+          description: 'quantity, hours, amount'
+        description:
+          type: string
+          description: Description of order line item
+        memo:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: ./Link.yaml#/components/schemas/Link
+        date:
+          $ref: ./DateTimeStamp.yaml#/components/schemas/DateTimeStamp

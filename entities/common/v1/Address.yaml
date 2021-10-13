@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Address:
+      title: address
+      type: object
+      description: 'Common Address object '
+      properties:
+        addressLine1:
+          type: string
+          description: 'Address Line1, Typically should have house number/location with Street name.'
+        addressLine2:
+          type: string
+          description: 'Address Line 2 , used for spill over from Address Line1 or for presenting a good format purpose.'
+        addressLine3:
+          type: string
+          description: 'Address Line 3 , used for spill over from Address Line2 or for presenting a good format purpose.'
+        city:
+          type: string
+          description: 'any of the following - City, district, town or village'
+        state:
+          type: string
+          description: State associated with the address
+        country:
+          type: string
+          description: 'Three Char country codes (alpha-3). https://www.iso.org/iso-3166-country-codes.html'
+        addressType:
+          type: string
+          enum:
+            - billing
+            - shipping
+            - postal
+            - main
+            - other
+          description: Type of address - shipping/billing/postal
+        postalCode:
+          type: string
+          description: Postal/zip code based on Country
+      required:
+        - addressLine1
+        - city
+        - state
+        - country
+        - addressType

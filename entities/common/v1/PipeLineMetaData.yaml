@@ -1,0 +1,20 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    PipelineMetaData:
+      title: PipelineMetaData
+      type: object
+      properties:
+        pipelineVersion:
+          type: string
+        processorExecution:
+          type: array
+          items:
+            $ref: ./ProcessorInfo.yaml#/components/schemas/ProcessorInfo
+      description: Generic Pipeline meta data

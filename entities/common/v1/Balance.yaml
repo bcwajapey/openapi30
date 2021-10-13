@@ -1,0 +1,24 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Balance:
+      title: balances
+      type: object
+      description: Common Balances entity
+      properties:
+        totalBalance:
+          $ref: ./Money.yaml#/components/schemas/Money
+        availableBalance:
+          $ref: ./Money.yaml#/components/schemas/Money
+        withheldBalance:
+          $ref: ./Money.yaml#/components/schemas/Money
+        asOfTime:
+          $ref: ./DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+      required:
+        - asOfTime

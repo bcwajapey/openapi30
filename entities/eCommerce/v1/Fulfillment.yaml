@@ -1,0 +1,57 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Fulfillment:
+      title: Fulfillment
+      type: object
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        date:
+          $ref: ../../common/v1/DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+        tracking:
+          $ref: ./Tracking.yaml#/components/schemas/Tracking
+        billingAddress:
+          $ref: ../../common/v1/Address.yaml#/components/schemas/Address
+        shippingAddress:
+          $ref: ../../common/v1/Address.yaml#/components/schemas/Address
+        fulfillmentLineItems:
+          type: array
+          description: Will be null if fulfillment for whole order
+          items:
+            $ref: ./FulfillmentLineItem.yaml#/components/schemas/FulfillmentLineItem
+        links:
+          type: array
+          description: Links associated with fulfillment
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        internaltionDuties:
+          type: string
+          enum:
+            - dap
+            - ddp
+          description: |
+            dap- deliver at place ; ddp - delivered duty paid
+        status:
+          type: string
+          enum:
+            - unsubmitted
+            - submitted
+            - accepted
+            - rejected
+            - cancellation
+            - closed
+            - open
+            - inprogress
+            - hold
+            - incomplete
+          description: Fulfillment status
+        shopId:
+          type: string
+          description: Fulfillment shop ID

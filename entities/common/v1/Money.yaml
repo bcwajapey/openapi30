@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Money:
+      title: money
+      type: object
+      description: Money object to standardized across domain and entities
+      properties:
+        currency:
+          type: string
+          description: 'Original 3 char Currency code https://www.iso.org/iso-4217-currency-codes.html '
+        targetCurrency:
+          type: string
+          description: 'Original 3 char Currency code https://www.iso.org/iso-4217-currency-codes.html '
+        exchangeRate:
+          type: number
+          description: Exchange rate reported for the data in the payload
+        amount:
+          type: number
+      required:
+        - currency
+        - amount

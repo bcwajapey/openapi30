@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Contact:
+      title: contact
+      type: object
+      description: Contact - For Individual/consumer - Individual Name or Business - business name
+      properties:
+        businessName:
+          type: string
+          description: Name of the business
+        IndividualName:
+          type: object
+          description: |
+            Individual name - First, middle, last, suffix
+          properties:
+            firstName:
+              type: string
+              description: First Name of Individual
+            middleName:
+              type: string
+              description: Middle Name
+            lastName:
+              type: string
+              description: Last name
+            suffix:
+              type: string
+              description: 'Suffix - Mr, Mrs'

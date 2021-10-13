@@ -1,0 +1,31 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Fee:
+      title: Fee
+      type: object
+      description: Fee Object
+      properties:
+        id:
+          $ref: ./Id.yaml#/components/schemas/Id
+        amount:
+          $ref: ./Money.yaml#/components/schemas/Money
+        feeType:
+          type: string
+          enum:
+            - appfee
+            - processing
+            - service
+            - brokerage
+            - duty
+            - shipping
+          description: Type of fees
+      required:
+        - id
+        - amount

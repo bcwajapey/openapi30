@@ -1,0 +1,18 @@
+openapi: 3.1.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    RefundEvent:
+      title: RefundEvent
+      type: object
+      description: RefundEvent
+      properties:
+        data:
+          $ref: ../../../entities/payment/v1/Refund.yaml#/components/schemas/Refund
+        metaData:
+          $ref: ../../../entities/common/v1/MetaData.yaml#/components/schemas/MetaData

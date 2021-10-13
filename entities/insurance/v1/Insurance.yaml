@@ -1,0 +1,21 @@
+openapi: 3.1.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    InsuranceAccount:
+      title: Insurance
+      type: object
+      properties:
+        id:
+          type: string
+    InsuranceTransaction:
+      title: InsuranceTransaction
+      type: object
+      properties:
+        id:
+          type: string

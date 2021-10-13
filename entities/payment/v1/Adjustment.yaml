@@ -1,0 +1,28 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Adjustment:
+      title: Adjustment
+      type: object
+      description: 'This refers to the transaction adjustment that arises from a dispute. The dispute can be due to fradulent activity, duplicate transaction etc.'
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        type:
+          type: string
+          enum:
+            - dispute
+            - currencydifference
+          description: A type of adjustment like a currency adjustment or dispute
+        disputes:
+          type: array
+          description: |
+            The disputes linked to this adjustment
+          items:
+            $ref: ./Dispute.yaml#/components/schemas/Dispute

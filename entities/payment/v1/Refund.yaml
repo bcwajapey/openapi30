@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Refund:
+      title: Refund
+      type: object
+      description: A refund associated to an order.
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        status:
+          type: string
+          enum:
+            - pending
+            - completed
+            - rejected
+            - failed
+          description: The status of the refund i.e. pending etc
+        amount:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        paymentId:
+          description: The payment identifier
+          type: string
+        orderId:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        links:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        fees:
+          type: array
+          items:
+            $ref: ../../common/v1/Fee.yaml#/components/schemas/Fee
+        reason:
+          type: string
+          description: The reason for refund
+        invoiceId:
+          type: array
+          description: The invoice identfier
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        refundAs:
+          type: string
+          enum:
+            - card
+            - echeck
+          description: 'The type of refund i.e. card,e-check'
+        type:
+          type: string
+          enum:
+            - fee
+            - payment
+            - reversal
+            - transfer
+            - other
+            - failure

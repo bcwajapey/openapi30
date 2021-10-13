@@ -1,0 +1,85 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Invoice:
+      title: Invoice
+      type: object
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        invoicer:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+        recipients:
+          type: array
+          description: Recipients of the invoice
+          items:
+            $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+        invoiceLineItems:
+          type: array
+          description: Line items in the invoice
+          items:
+            $ref: ./InvoiceLineItem.yaml#/components/schemas/InvoiceLineItem
+        amount:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        amountDue:
+          $ref: ../../common/v1/Money.yaml#/components/schemas/Money
+        fees:
+          type: array
+          description: Invoice fees
+          items:
+            $ref: ../../common/v1/Fee.yaml#/components/schemas/Fee
+        links:
+          type: array
+          description: Links associated with invoice
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        discounts:
+          type: array
+          description: Invoice discounts
+          items:
+            $ref: ./Discount.yaml#/components/schemas/Discount
+        taxes:
+          type: array
+          description: Taxes in invoice
+          items:
+            $ref: ../../common/v1/Tax.yaml#/components/schemas/Tax
+        refunds:
+          type: array
+          description: Refunds in invoice
+          items:
+            $ref: ../../payment/v1/Refund.yaml#/components/schemas/Refund
+        orders:
+          type: array
+          description: Purchase order ID
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link
+        note:
+          type: string
+          description: Invoice note
+        memo:
+          type: string
+          description: Invoice memo
+        invoiceDate:
+          $ref: ../../common/v1/DateTimeStamp.yaml#/components/schemas/DateTimeStamp
+        status:
+          type: string
+          description: ENUM
+          enum:
+            - open
+            - completed
+            - unpaid
+            - uncollectible
+            - cancelled
+        taxId:
+          type: string
+          description: Tax ID
+        payments:
+          type: array
+          items:
+            $ref: ../../common/v1/Link.yaml#/components/schemas/Link

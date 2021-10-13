@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    IndustryCode:
+      title: IndustryCode
+      type: object
+      description: 'Industry Code such as SIC, Swift, MCC etc'
+      properties:
+        type:
+          type: string
+          enum:
+            - mcc
+            - sic
+            - bai
+            - swfit
+            - bic
+            - other
+          description: 'ENUM of industry code '
+        value:
+          type: string
+          description: Value of Industry code
+      required:
+        - type
+        - value

@@ -1,0 +1,61 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    LinkedAccount:
+      title: LinkedAccount
+      type: object
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        accountNumber:
+          type: string
+          description: The account number
+        description:
+          type: string
+          description: Account description
+        maskedAccountNumber:
+          type: string
+        tokenizedAccountNumber:
+          type: string
+        routingNumber:
+          type: string
+          description: A routing number or ABA number
+        bankName:
+          type: string
+          description: The name of the bank
+        country:
+          type: string
+          description: The country where the account is opened
+        defaultCurrency:
+          type: string
+          description: 'Oringinal 3 char Currency code https://www.iso.org/iso-4217-currency-codes.html '
+        status:
+          type: string
+          enum:
+            - validated
+            - verified
+            - failed
+          description: 'The status of the linked account like verified, validated or failed'
+        ownershipName:
+          type: string
+          description: Owner of the linked account
+        ownershipType:
+          type: string
+          enum:
+            - consumer
+            - joint
+            - business
+            - corporate
+          description: The type of ownership
+        accountType:
+          type: string
+          description: 'The type of account like credit, debit etc'
+        customer:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
+      description: 'The account that is associated with the Payment account. There might be multiple linked associated with the payment '

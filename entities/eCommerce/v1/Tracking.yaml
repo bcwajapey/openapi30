@@ -1,0 +1,38 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Tracking:
+      title: Tracking
+      type: object
+      description: Tracking details
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        trackingNumber:
+          type: string
+          description: Tracking number
+        trackingUrl:
+          type: string
+          description: Tracking URL
+        trackingCompany:
+          type: string
+          description: Tracking company
+        assignedLocationId:
+          type: string
+        deliveryMethod:
+          type: string
+          enum:
+            - local
+            - none
+            - pickup
+            - retail
+            - shipping
+          description: 'local, none, retail, pickup, shipping'
+        assignedLocationAddress:
+          $ref: ../../common/v1/Address.yaml#/components/schemas/Address

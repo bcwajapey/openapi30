@@ -1,0 +1,17 @@
+openapi: 3.0.0
+info:
+  title: idx3
+  version: '1.0'
+servers:
+  - url: 'http://localhost:3000'
+paths: {}
+components:
+  schemas:
+    Supplier:
+      title: Supplier
+      type: object
+      properties:
+        id:
+          $ref: ../../common/v1/Id.yaml#/components/schemas/Id
+        contact:
+          $ref: ../../common/v1/Customer.yaml#/components/schemas/Customer
